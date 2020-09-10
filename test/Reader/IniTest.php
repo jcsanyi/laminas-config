@@ -32,6 +32,19 @@ class IniTest extends AbstractReaderTestCase
         return __DIR__ . '/TestAssets/Ini/' . $name . '.ini';
     }
 
+    public function testConstructorOptions()
+    {
+        $opts = [
+            'nestSeparator' => '-',
+            'processSections' => false,
+            'typedMode' => true,
+        ];
+        $reader = new Ini($opts);
+        $this->assertEquals('-', $reader->getNestSeparator());
+        $this->assertEquals(false, $reader->getProcessSections());
+        $this->assertEquals(true, $reader->getTypedMode());
+    }
+
     public function testInvalidIniFile()
     {
         $this->reader = new Ini();

@@ -64,6 +64,26 @@ class Ini implements ReaderInterface
     protected $typedMode = false;
 
     /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        if (isset($options['nestSeparator'])) {
+            $this->setNestSeparator($options['nestSeparator']);
+        }
+
+        if (isset($options['processSections'])) {
+            $this->setProcessSections((bool) $options['processSections']);
+        }
+
+        if (isset($options['typedMode'])) {
+            $this->setTypedMode((bool) $options['typedMode']);
+        }
+    }
+
+    /**
      * Set nest separator.
      *
      * @param  string $separator

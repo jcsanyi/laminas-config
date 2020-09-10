@@ -23,6 +23,17 @@ class IniTest extends AbstractWriterTestCase
         $this->writer = new IniWriter();
     }
 
+    public function testConstructorOptions()
+    {
+        $opts = [
+            'nestSeparator' => '-',
+            'renderWithoutSections' => true,
+        ];
+        $writer = new IniWriter($opts);
+        $this->assertEquals('-', $writer->getNestSeparator());
+        $this->assertEquals(true, $writer->shouldRenderWithoutSections());
+    }
+
     public function testNoSection()
     {
         $config = new Config(['test' => 'foo', 'test2' => ['test3' => 'bar']]);

@@ -36,6 +36,22 @@ class Ini extends AbstractWriter
     protected $renderWithoutSections = false;
 
     /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        if (isset($options['nestSeparator'])) {
+            $this->setNestSeparator($options['nestSeparator']);
+        }
+
+        if (isset($options['renderWithoutSections'])) {
+            $this->setRenderWithoutSectionsFlags((bool) $options['renderWithoutSections']);
+        }
+    }
+
+    /**
      * Set nest separator.
      *
      * @param  string $separator
